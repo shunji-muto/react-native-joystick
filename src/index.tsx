@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import React, { useState, useCallback, useMemo } from "react";
 import { View, StyleSheet, Platform } from "react-native";
 import * as utils from "./utils";
@@ -86,7 +87,7 @@ export const ReactNativeJoystick = ({ onStart, onMove, onStop, color = "#000000"
       });
   };
 
-  const panGesture = Gesture.Pan().onStart(handleTouchStart).onEnd(handleTouchEnd).onTouchesMove(handleTouchMove);
+  const panGesture = Gesture.Pan().onStart(handleTouchStart).onEnd(handleTouchEnd).onTouchesMove(handleTouchMove).runOnJS(true);
   const styles = useMemo(
     () =>
       StyleSheet.create({
@@ -117,9 +118,9 @@ export const ReactNativeJoystick = ({ onStart, onMove, onStop, color = "#000000"
 
   return (
     <GestureDetector gesture={panGesture}>
-      <View style={styles.wrapper} {...props}>
-        <View pointerEvents="none" style={styles.nipple}></View>
-      </View>
+      {React.createElement(View as any, { style: styles.wrapper, ...props },
+        React.createElement(View as any, { pointerEvents: "none", style: styles.nipple })
+      )}
     </GestureDetector>
   );
 };

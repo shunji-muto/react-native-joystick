@@ -1,8 +1,28 @@
 {
-  "extends": "./tsconfig",
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "react-native": ["./example/node_modules/react-native"],
+      "react": ["./example/node_modules/react"],
+      "react-native-gesture-handler": ["./example/node_modules/react-native-gesture-handler"]
+    },
+    "typeRoots": ["./example/node_modules/@types"],
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "lib": ["ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "noEmit": false,
-    "noEmitOnError": false
+    "noEmitOnError": false,
+    "outDir": "lib",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": false,
+    "target": "ESNext"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["example", "lib", "node_modules"]
 }
